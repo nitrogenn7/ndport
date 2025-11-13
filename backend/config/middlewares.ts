@@ -18,7 +18,6 @@ module.exports = [
   {
     name: 'strapi::cors',
     config: {
-      enabled: true,
       origin: ['https://ndport-n582.onrender.com', 'http://localhost:3000'],
       headers: '*',
     },
