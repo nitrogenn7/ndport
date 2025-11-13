@@ -190,7 +190,7 @@ export default function Home() {
             {isVideoFile(selectedImage) || isVideo(selectedImage?.url) ? (
               <video
                 src={`${selectedImage?.url}`}
-                className="h-full w-full object-contain select-none p-8"
+                className="w-full object-contain select-none p-8"
                 autoPlay
                 controls
                 playsInline

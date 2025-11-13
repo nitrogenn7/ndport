@@ -5,7 +5,7 @@ export default [
     name: 'strapi::cors',
     config: {
       enabled: true,
-      origin: ['https://ndport-n582.onrender.com'], // your frontend domain
+      origin: ['https://ndport-n582.onrender.com', 'http://localhost:3000'], // your frontend domain
       headers: [
         'Content-Type',
         'Authorization',
