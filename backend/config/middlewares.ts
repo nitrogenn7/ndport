@@ -11,3 +11,11 @@ export default [
   'strapi::public',
 ];
 
+module.exports = {
+  settings: {
+    cors: {
+      enabled: true,
+      origin: ['https://ndport.vercel.app/']
+    },
+  },
+};
