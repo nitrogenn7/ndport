@@ -144,10 +144,11 @@ export default function Home() {
         {/* <div className="col-span-1">
           <p>hello</p>
         </div> */}
+        {/* ${strapiApiUrl} */}
         <div className="">
           <XMasonry>
             {dataPort[0]?.image.map((data: any) => {
-              const fileUrl = `${strapiApiUrl}${data.url}`;
+              const fileUrl = `${data.url}`;
               const isVid = isVideoFile(data) || isVideo(data.url);
 
               return (
@@ -193,7 +194,7 @@ export default function Home() {
           <div className="w-screen h-screen p-4">
             {isVideoFile(selectedImage) || isVideo(selectedImage?.url) ? (
               <video
-                src={`${strapiApiUrl}${selectedImage?.url}`}
+                src={`${selectedImage?.url}`}
                 className="h-full w-full object-contain select-none p-8"
                 autoPlay
                 controls
@@ -201,7 +202,7 @@ export default function Home() {
               />
             ) : (
               <img
-                src={`${strapiApiUrl}${selectedImage?.url}`}
+                src={`${selectedImage?.url}`}
                 alt={selectedImage.alternativeText || "Full image"}
                 width={100}
                 height={100}
