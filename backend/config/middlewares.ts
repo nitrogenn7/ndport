@@ -8,8 +8,8 @@ module.exports = [
         useDefaults: true,
         directives: {
           'connect-src': ["'self'", 'https:'],
-          'img-src': ["'self'", 'data:', 'blob:', 'https://ndport.onrender.app'],
-          'media-src': ["'self'", 'data:', 'blob:', 'https://ndport.onrender.app'],
+          'img-src': ["'self'", 'data:', 'blob:', 'https://ndport-n582.onrender.com'],
+          'media-src': ["'self'", 'data:', 'blob:', 'https://ndport-n582.onrender.com'],
           upgradeInsecureRequests: null,
         },
       },
@@ -19,7 +19,7 @@ module.exports = [
     name: 'strapi::cors',
     config: {
       enabled: true,
-      origin: ['https://ndport.onrender.app', 'http://localhost:3000'],
+      origin: ['https://ndport-n582.onrender.com', 'http://localhost:3000'],
       headers: '*',
     },
   },
