@@ -186,7 +186,7 @@ export default function Home() {
           "
           onClick={() => setSelectedImage(null)}
         >
-          <div className="w-screen h-screen p-4">
+          <div className="w-screen h-screen flex justify-center items-center p-4">
             {isVideoFile(selectedImage) || isVideo(selectedImage?.url) ? (
               <video
                 src={`${selectedImage?.url}`}
