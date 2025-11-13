@@ -120,7 +120,7 @@ export default function Home() {
     ) : (
     <div className="min-h-screen bg-zinc-300 font-sans text-black overflow-hidden flex flex-col mx-auto">
       {/* HEADER */}
-      <div className="p-4 flex justify-between items-center">
+      <div className="p-4 flex justify-between items-center fixed w-full top-0 bg-zinc-300 z-10">
         <div className="flex items-center gap-2">
           {/* <div className={`${IBMMono.className} text-lg font-bold`}> */}
             <Image alt="" src={Logo} className="h-4 w-fit"/>
@@ -140,11 +140,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="">
-        {/* <div className="col-span-1">
-          <p>hello</p>
-        </div> */}
-        {/* ${strapiApiUrl} */}
+      <div className="pt-[52px]">
         <div className="">
           <XMasonry>
             {dataPort[0]?.image.map((data: any) => {
@@ -181,7 +177,6 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Lightbox Overlay */}
       {selectedImage && (
         <div
           className="
@@ -212,6 +207,73 @@ export default function Home() {
           </div>
         </div>
       )}
+
+      {/* <div className="pt-[52px]">
+        <div className="">
+          <XMasonry>
+            {dataPort[0]?.image.map((data: any) => {
+              const fileUrl = `${data.url}`;
+              const isVid = isVideoFile(data) || isVideo(data.url);
+              return (
+                <XBlock key={data.id}>
+                  <div
+                    className="hover:opacity-70 transition-all duration-300 ease-in-out cursor-pointer"
+                    onClick={() => setSelectedImage(data)}
+                  >
+                    {isVid ? (
+                      <video
+                        src={`http://localhost:1337${fileUrl}`}
+                        className="select-none w-full h-auto"
+                        muted
+                        loop
+                        autoPlay
+                        playsInline
+                      />
+                    ) : (
+                      <img
+                        src={`http://localhost:1337${fileUrl}`}
+                        alt={data.alternativeText || ""}
+                        className="select-none w-full h-auto object-cover"
+                      />
+                    )}
+                  </div>
+                </XBlock>
+              );
+            })}
+          </XMasonry>
+        </div>
+      </div>
+      
+      {selectedImage && (
+        <div
+          className="
+            fixed inset-0 z-50 flex items-center justify-center
+            bg-black/90 backdrop-blur-sm
+            transition-opacity duration-300
+          "
+          onClick={() => setSelectedImage(null)}
+        >
+          <div className="w-screen h-screen p-4">
+            {isVideoFile(selectedImage) || isVideo(selectedImage?.url) ? (
+              <video
+                src={`http://localhost:1337${selectedImage?.url}`}
+                className="h-full w-full object-contain select-none p-8"
+                autoPlay
+                controls
+                playsInline
+              />
+            ) : (
+              <img
+                src={`http://localhost:1337${selectedImage?.url}`}
+                alt={selectedImage.alternativeText || "Full image"}
+                width={100}
+                height={100}
+                className="h-full w-full object-contain select-none p-8"
+              />
+            )}
+          </div>
+        </div>
+      )} */}
 
     </div>
   ));
