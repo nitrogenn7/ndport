@@ -1,27 +1,26 @@
-module.exports = [
+export default [
   'strapi::logger',
   'strapi::errors',
   {
-    name: 'strapi::security',
-    config: {
-      contentSecurityPolicy: {
-        useDefaults: true,
-        directives: {
-          'connect-src': ["'self'", 'https:'],
-          'img-src': ["'self'", 'data:', 'blob:', 'https://ndport-n582.onrender.com'],
-          'media-src': ["'self'", 'data:', 'blob:', 'https://ndport-n582.onrender.com'],
-          upgradeInsecureRequests: null,
-        },
-      },
-    },
-  },
-  {
     name: 'strapi::cors',
     config: {
-      origin: ['https://ndport-n582.onrender.com', 'http://localhost:3000'],
-      headers: '*',
+      enabled: true,
+      origin: ['https://ndport-n582.onrender.com'], // your frontend domain
+      headers: [
+        'Content-Type',
+        'Authorization',
+        'Origin',
+        'Accept',
+        'Keep-Alive',
+        'User-Agent',
+        'If-Modified-Since',
+        'Cache-Control',
+      ],
+      methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+      keepHeaderOnError: true,
     },
   },
+  'strapi::security',
   'strapi::poweredBy',
   'strapi::query',
   'strapi::body',
