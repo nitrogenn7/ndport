@@ -1,8 +1,28 @@
-export default [
+module.exports = [
   'strapi::logger',
   'strapi::errors',
-  'strapi::security',
-  'strapi::cors',
+  {
+    name: 'strapi::security',
+    config: {
+      contentSecurityPolicy: {
+        useDefaults: true,
+        directives: {
+          'connect-src': ["'self'", 'https:'],
+          'img-src': ["'self'", 'data:', 'blob:', 'https://ndport.onrender.app'],
+          'media-src': ["'self'", 'data:', 'blob:', 'https://ndport.onrender.app'],
+          upgradeInsecureRequests: null,
+        },
+      },
+    },
+  },
+  {
+    name: 'strapi::cors',
+    config: {
+      enabled: true,
+      origin: ['https://ndport.onrender.app', 'http://localhost:3000'],
+      headers: '*',
+    },
+  },
   'strapi::poweredBy',
   'strapi::query',
   'strapi::body',
@@ -10,12 +30,3 @@ export default [
   'strapi::favicon',
   'strapi::public',
 ];
-
-module.exports = {
-  settings: {
-    cors: {
-      enabled: true,
-      origin: ['https://ndport.vercel.app/']
-    },
-  },
-};
