@@ -5,7 +5,7 @@ export default [
     name: 'strapi::cors',
     config: {
       enabled: true,
-      origin: ['https://ndport-n582.onrender.com','https://www.justonemore.bet/', 'http://localhost:3000'], // your frontend domain
+      origin: ['https://ndport-n582.onrender.com','https://justonemore.bet/', 'http://localhost:3000'], // your frontend domain
       headers: [
         'Content-Type',
         'Authorization',
