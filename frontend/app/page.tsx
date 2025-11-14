@@ -111,104 +111,105 @@ export default function Home() {
   return (
     loading ? (
       <div className="min-h-screen flex items-center justify-center bg-zinc-300">
-        <p className="text-black"><Spinner className="h-7 w-7"/></p>
+        <p className="text-black"><Spinner className="h-7 w-7" /></p>
       </div>
     ) : error ? (
       <div className="min-h-screen flex items-center justify-center bg-zinc-300">
-        <p className="text-red-500">Error: {error.message}</p>
+        <p className="text-red-500">Error: {error.message} </p>
+        <a href="/">link</a>
       </div>
     ) : (
-    <div className="min-h-screen bg-zinc-300 font-sans text-black overflow-hidden flex flex-col mx-auto">
-      {/* HEADER */}
-      <div className="p-4 flex justify-between items-center fixed w-full top-0 bg-zinc-300 z-10">
-        <div className="flex items-center gap-2">
-          {/* <div className={`${IBMMono.className} text-lg font-bold`}> */}
-            <Image alt="" src={Logo} className="h-4 w-fit"/>
-          {/* </div> */}
-          <div>
+      <div className="min-h-screen bg-zinc-300 font-sans text-black overflow-hidden flex flex-col mx-auto">
+        {/* HEADER */}
+        <div className="p-4 flex justify-between items-center fixed w-full top-0 bg-zinc-300 z-10">
+          <div className="flex items-center gap-2">
+            {/* <div className={`${IBMMono.className} text-lg font-bold`}> */}
+            <Image alt="" src={Logo} className="h-4 w-fit" />
+            {/* </div> */}
+            <div>
 
+            </div>
+          </div>
+          <div className="flex gap-2 items-center">
+
+            <div className="text-xs ">
+              <p>{currentTime.toLocaleTimeString()}</p>
+            </div>
+            <div className="text-xs bg-base w-fit text-center py-0.5 px-3 rounded-full">
+              <p className="">{currentTime.getFullYear()}</p>
+            </div>
           </div>
         </div>
-        <div className="flex gap-2 items-center">
 
-          <div className="text-xs ">
-            <p>{currentTime.toLocaleTimeString()}</p>
-          </div>
-          <div className="text-xs bg-base w-fit text-center py-0.5 px-3 rounded-full">
-            <p className="">{currentTime.getFullYear()}</p>
+        <div className="pt-[52px]">
+          <div className="">
+            <XMasonry>
+              {dataPort[0]?.image.map((data: any) => {
+                const fileUrl = `${data.url}`;
+                const isVid = isVideoFile(data) || isVideo(data.url);
+
+                return (
+                  <XBlock key={data.id}>
+                    <div
+                      className="hover:opacity-70 transition-all duration-300 ease-in-out cursor-pointer"
+                      onClick={() => setSelectedImage(data)}
+                    >
+                      {isVid ? (
+                        <video
+                          src={fileUrl}
+                          className="select-none w-full h-auto"
+                          muted
+                          loop
+                          autoPlay
+                          playsInline
+                        />
+                      ) : (
+                        <img
+                          src={fileUrl}
+                          alt={data.alternativeText || ""}
+                          className="select-none w-full h-auto object-cover"
+                        />
+                      )}
+                    </div>
+                  </XBlock>
+                );
+              })}
+            </XMasonry>
           </div>
         </div>
-      </div>
 
-      <div className="pt-[52px]">
-        <div className="">
-          <XMasonry>
-            {dataPort[0]?.image.map((data: any) => {
-              const fileUrl = `${data.url}`;
-              const isVid = isVideoFile(data) || isVideo(data.url);
-
-              return (
-                <XBlock key={data.id}>
-                  <div
-                    className="hover:opacity-70 transition-all duration-300 ease-in-out cursor-pointer"
-                    onClick={() => setSelectedImage(data)}
-                  >
-                    {isVid ? (
-                      <video
-                        src={fileUrl}
-                        className="select-none w-full h-auto"
-                        muted
-                        loop
-                        autoPlay
-                        playsInline
-                      />
-                    ) : (
-                      <img
-                        src={fileUrl}
-                        alt={data.alternativeText || ""}
-                        className="select-none w-full h-auto object-cover"
-                      />
-                    )}
-                  </div>
-                </XBlock>
-              );
-            })}
-          </XMasonry>
-        </div>
-      </div>
-
-      {selectedImage && (
-        <div
-          className="
+        {selectedImage && (
+          <div
+            className="
             fixed inset-0 z-50 flex items-center justify-center
             bg-black/90 backdrop-blur-sm
             transition-opacity duration-300
           "
-          onClick={() => setSelectedImage(null)}
-        >
-          <div className="w-screen h-screen flex justify-center items-center p-4">
-            {isVideoFile(selectedImage) || isVideo(selectedImage?.url) ? (
-              <video
-                src={`${selectedImage?.url}`}
-                className="w-full object-contain select-none p-8"
-                autoPlay
-                controls
-                playsInline
-              />
-            ) : (
-              <img
-                src={`${selectedImage?.url}`}
-                alt={selectedImage.alternativeText || "Full image"}
-                width={100}
-                height={100}
-                className="h-full w-full object-contain select-none p-8"
-              />
-            )}
+            onClick={() => setSelectedImage(null)}
+          >
+            <div className="w-screen h-screen flex justify-center items-center p-4">
+              {isVideoFile(selectedImage) || isVideo(selectedImage?.url) ? (
+                <video
+                  src={`${selectedImage?.url}`}
+                  className="w-full object-contain select-none p-8"
+                  autoPlay
+                  controls
+                  playsInline
+                />
+              ) : (
+                <img
+                  src={`${selectedImage?.url}`}
+                  alt={selectedImage.alternativeText || "Full image"}
+                  width={100}
+                  height={100}
+                  className="h-full w-full object-contain select-none p-8"
+                />
+              )}
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
-      {/* <div className="pt-[52px]">
+        {/* <div className="pt-[52px]">
         <div className="">
           <XMasonry>
             {dataPort[0]?.image.map((data: any) => {
@@ -275,6 +276,6 @@ export default function Home() {
         </div>
       )} */}
 
-    </div>
-  ));
+      </div>
+    ));
 }
